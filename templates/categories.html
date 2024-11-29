@@ -1,0 +1,43 @@
+<!-- templates/categories.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class="categories-container">
+    <h2>Manage Categories</h2>
+
+    <div class="create-category">
+        <h3>Create New Category</h3>
+        <form method="POST" action="{{ url_for('categories') }}">
+            {{ form.hidden_tag() }}
+            <div>
+                {{ form.name.label }}<br>
+                {{ form.name(class="form-control") }}
+            </div>
+            <div>
+                {{ form.description.label }}<br>
+                {{ form.description(class="form-control") }}
+            </div>
+            <div>
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+
+    <div class="existing-categories">
+        <h3>Your Categories</h3>
+        {% if categories %}
+            <ul>
+                {% for category in categories %}
+                <li>
+                    {{ category.name }} - {{ category.description }}
+                    <form method="POST" action="{{ url_for('delete_category', category_id=category.id) }}" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No categories created yet.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

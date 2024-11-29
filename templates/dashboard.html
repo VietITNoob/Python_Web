@@ -1,0 +1,8 @@
+<!-- templates/dashboard.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard-container">
+    <h2>Welcome, {{ current_user.username }}!</h2>
+    <p>This is your personal dashboard.</p>
+</div>
+{% endblock %}
