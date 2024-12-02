@@ -1,4 +1,4 @@
-<!-- templates/base.html -->
+<!-- base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +10,6 @@
     <nav>
         <ul>
             {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ url_for('categories') }}">Categories</a></li>
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
             {% else %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
@@ -30,11 +28,6 @@
         {% endif %}
     {% endwith %}
 
-    {% block content %}
-    <div class="container">
-        <h1>Welcome to Epic Games Clone</h1>
-        <p>Explore and manage your game categories!</p>
-    </div>
-    {% endblock %}
+    {% block content %}{% endblock %}
 </body>
 </html>

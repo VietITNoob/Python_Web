@@ -1,0 +1,31 @@
+<!-- index.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Epic Games Store</h1>
+
+    <div class="search-container">
+        <form method="POST" class="search-form">
+            {{ search_form.hidden_tag() }}
+            <div class="search-input">
+                {{ search_form.search(placeholder="Search by game name or category") }}
+                {{ search_form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p>Category: {{ product.category }}</p>
+            <p>Price: ${{ "%.2f"|format(product.price) }}</p>
+            {% if current_user.is_authenticated %}
+            <button class="btn btn-secondary">Add to Cart</button>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
